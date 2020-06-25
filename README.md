@@ -5,7 +5,11 @@
 
 获取B站视频信息  https://www.bilibili.com/index/ding.json
 
-获取推荐观看的视频  https://www.bilibili.com/index/catalogy/5-3day.json
+获取当前视频的视频信息 https://api.bilibili.com/x/web-interface/view?bvid=视频bvid
+
+获取热门的视频  https://www.bilibili.com/index/catalogy/5-3day.json
+
+获取相关推荐视频  http://api.bilibili.com/x/web-interface/archive/related?aid=视频aid
 
 获取视频的评论数据  http://api.bilibili.com/x/v2/reply?jsonp=jsonp&pn=1&type=1&oid=视频aid
 
