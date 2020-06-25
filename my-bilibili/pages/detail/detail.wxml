@@ -24,7 +24,7 @@
   </view>
   <!-- 推荐视频 -->
   <view class="other_list">
-    <navigator wx:for="{{othervideo}}" wx:key="{{index}}" class="item_other" url="../playvideo/playvideo?aid={{item.aid}}&bvid={{item.bvid}}">
+    <navigator wx:for="{{othervideo}}" wx:key="{{index}}" class="item_other" url="../playvideo/playvideo?aid={{item.aid}}&bvid={{item.bvid}}&cid={{item.cid}}">
       <!-- 图片容器 -->
       <view class="other_imgwarp">
         <image src="{{item.pic}}" mode="widthFix"></image>
@@ -33,8 +33,8 @@
       <view class="other_infowarp">
       <view class="otherlist_title">{{item.title}}</view>
       <view class="otherlist_playinfo">
-          <view class="otherlist_view">{{item.play}}次观看</view>
-          <view class="otherlist_danmu">{{item.favorites}}收藏</view>
+          <view class="otherlist_view">{{item.stat.view}}次观看</view>
+          <view class="otherlist_danmu">{{item.stat.favorite}}收藏</view>
       </view>  
       </view>
     </navigator>

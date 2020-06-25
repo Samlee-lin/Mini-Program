@@ -13,42 +13,75 @@ Page({
   },
 
   // 获取当前视频详细信息
-  getCurrentVideoInfo(videoid){
+  // getCurrentVideoInfo(videoid){
+  //   let that = this;
+  //   wx.request({
+  //     url: 'https://www.bilibili.com/index/ding.json',
+  //     success(res){
+  //       //console.log(res);
+  //       if(res.data.code === 0){
+          
+  //         let kichiku = res.data.kichiku;
+  //         let keys = Object.keys(kichiku);
+  //         for (let i = 0; i < keys.length; i++) {
+  //           if(kichiku[i].aid === parseInt(videoid)){
+  //             console.log("1111"+kichiku[i].aid);
+  //             that.setData({
+  //               detail:kichiku[i]
+  //             })
+  //           }         
+  //         } 
+  //       }
+  //     }
+  //   })
+  // },
+
+  // 获取当前视频详细信息（新接口）
+  getCurrentVideoInfo(bvid){
     let that = this;
     wx.request({
-      url: 'https://www.bilibili.com/index/ding.json',
+      url: 'https://api.bilibili.com/x/web-interface/view?bvid='+bvid,
       success(res){
         //console.log(res);
         if(res.data.code === 0){
+          that.setData({
+            detail:res.data.data
+          })
           
-          let kichiku = res.data.kichiku;
-          let keys = Object.keys(kichiku);
-          for (let i = 0; i < keys.length; i++) {
-            if(kichiku[i].aid = parseInt(videoid)){
-              that.setData({
-                detail:kichiku[i]
-              })
-
-            }
-            
-          }
         }
       }
     })
   },
 
   // 获取推荐视频
-  getOtherVideoList(){
+  // getOtherVideoList(){
+  //   let that = this;
+  //   wx.request({
+  //     url: 'https://www.bilibili.com/index/catalogy/5-3day.json',
+  //     success(res){
+  //     //console.log(res);
+  //     if(res.data.hot.code === 0){
+  //       that.setData({
+  //         othervideo:res.data.hot.list
+  //       })
+  //     }
+  //     }
+  //   })
+  // },
+
+  // 获取推荐视频(新接口)
+  getOtherVideoList(videoid){
     let that = this;
     wx.request({
-      url: 'https://www.bilibili.com/index/catalogy/5-3day.json',
+      url: 'http://api.bilibili.com/x/web-interface/archive/related?aid='+videoid,
       success(res){
-      //console.log(res);
-      if(res.data.hot.code === 0){
-        that.setData({
-          othervideo:res.data.hot.list
-        })
-      }
+      // console.log(videoid);
+      // console.log(res);
+       if(res.data.code === 0){
+         that.setData({
+           othervideo:res.data.data
+         })
+       }
       }
     })
   },
@@ -75,8 +108,11 @@ Page({
   onLoad: function (options) {
     //console.log(options);
     let videoid = this.options.id;
-    this.getCurrentVideoInfo(videoid);
-    this.getOtherVideoList();
+    let bvid = this.options.bvid;
+    //this.getCurrentVideoInfo(videoid);
+    this.getCurrentVideoInfo(bvid);
+    // this.getOtherVideoList();
+    this.getOtherVideoList(videoid);
     this.getVideoReply(videoid);
   },
 
