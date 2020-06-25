@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "视频详情页面",
+  "usingComponents":{
+    "Mytitle":"../../component/Mytitle/Mytitle"
+  }
+}

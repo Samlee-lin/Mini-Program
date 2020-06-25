@@ -1,0 +1,56 @@
+<view class="main">
+<!-- 公共头部 -->
+<Mytitle></Mytitle>
+<!-- 导航部分 -->
+<view class="banner_dh">
+<!-- 滚动区域组件 -->
+  <scroll-view class="nav_list" scroll-x>
+    <view bindtap="activeNav" data-index="{{index}}" class="nav_list_item {{index===currentnavindex?'active':''}}"  wx:for="{{navList}}" wx:key="{index}">
+    {{item.text}}
+    </view>
+  </scroll-view>
+</view>
+<!-- 轮播图区域 -->
+<view class="slide">
+  <swiper autoplay indicator-dots indicator-color="white" indicator-active-color="red" circular>
+    <navigator>
+    <swiper-item wx:for="{{swiperList}}" wx:key="{index}">
+      <image mode="widthFix" src="{{item.url}}"></image>
+    </swiper-item>
+    </navigator>
+  </swiper>
+</view>
+<!-- 视频列表 -->
+<view class="video_wrap">
+  <navigator url="../detail/detail?id={{item.aid}}" class="video_item" wx:for="{{videolist}}" wx:key="{{index}}">
+  <!-- 视频图片 -->
+    <view class="video_img">
+      <!-- 图片 -->
+      <image mode="widthFix" src="{{item.pic}}"></image>
+      <!-- 视频播放量 作者信息 -->
+      <view class="video_info">
+        <!-- 播放量栏 -->
+        <view class="video_playcnt">
+          <!-- 图标 -->
+          <text class="iconfont icon-paly"></text>
+          <!-- 播放量数值 -->
+          <text class="play_cnt">{{item.stat.view}}</text>
+        </view>
+        <!-- 评论栏 -->
+        <view class="video_commentcnt">
+          <!-- 图标 -->
+          <text class="iconfont .icon-liuyan"></text>
+          <!-- 评论量 -->
+          <text class="comment_cnt">{{item.stat.reply}}</text>
+        </view>
+      </view>
+      
+    </view>
+    <!-- 视频标题 -->
+    <view class="video_title">
+    {{item.title}}
+    </view>
+  
+  </navigator>
+</view>
+</view>

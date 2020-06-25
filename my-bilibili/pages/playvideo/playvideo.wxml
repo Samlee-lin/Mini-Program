@@ -1,0 +1,3 @@
+<web-view src="http://player.bilibili.com/player.html?aid={{aid}}&bvid={{bvid}}&cid={{cid}}">
+
+</web-view>

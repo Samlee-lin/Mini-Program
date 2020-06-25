@@ -1,0 +1,58 @@
+<view class="main">
+<!-- 引用公共头部 -->
+<Mytitle></Mytitle>
+<!-- 视频详情页面 -->
+<view class="onevideo">
+  <!-- 视频 -->
+  <view class="oncevideo_img">
+    <navigator url="../playvideo/playvideo?aid={{detail.aid}}&bvid={{detail.bvid}}&cid={{detail.cid}}">
+      <image mode="widthFix" class="oncvideo_img" src="{{detail.pic}}"></image>
+      <view class="play_btn"><image mode="widthFix"  src="../../images/playbtn.png"></image></view>
+    </navigator>
+  </view>
+  <!-- 视频标题 -->
+  <view class="oncevideo_title">
+    {{detail.title}}
+  </view>
+  <!-- 视频播放量等信息 -->
+  <view class="oncevideo_playinfo">
+    <view class="playinfo_name">{{detail.owner.name}}</view>
+    <view class="playinfo_view">{{detail.stat.view}}观看</view>
+    <view class="playinfo_reply">{{detail.stat.reply}}回复</view>
+    <view class="playinfo_danmaku">{{detail.stat.danmaku}}弹幕</view>
+    <view class="playinfo_aid">{{detail.bvid}}</view>
+  </view>
+  <!-- 推荐视频 -->
+  <view class="other_list">
+    <navigator wx:for="{{othervideo}}" wx:key="{{index}}" class="item_other" url="../playvideo/playvideo?aid={{item.aid}}&bvid={{item.bvid}}">
+      <!-- 图片容器 -->
+      <view class="other_imgwarp">
+        <image src="{{item.pic}}" mode="widthFix"></image>
+      </view>
+      <!-- 推荐视频信息 -->
+      <view class="other_infowarp">
+      <view class="otherlist_title">{{item.title}}</view>
+      <view class="otherlist_playinfo">
+          <view class="otherlist_view">{{item.play}}次观看</view>
+          <view class="otherlist_danmu">{{item.favorites}}收藏</view>
+      </view>  
+      </view>
+    </navigator>
+  </view>
+  <!-- 评论 -->
+  <view class="comm_warp">
+    <view class="comm_title">评论（{{videoreply.page.count}}）</view>
+    <view class="comm_list" wx:for="{{videoreply.replies}}" wx:key="{{index}}">
+      <view class="comm_user">
+        <image src="{{item.member.avatar}}" mode="widthFix"></image>
+      </view>
+      <view class="comm_info">
+        <view class="commm_detail">
+          <view class="author">{{item.member.uname}}</view>
+        </view>
+        <view class="commm_content">{{item.content.message}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+</view>
